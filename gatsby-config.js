@@ -1,28 +1,49 @@
+require('dotenv').config({
+	path: `.env`,
+});
+
 module.exports = {
-  siteMetadata: {
-    siteUrl: "https://www.yourdomain.tld",
-    title: "ww-gatsby-template",
-  },
-  plugins: [
-    {
-      resolve: "gatsby-source-sanity",
-      options: {
-        projectId: "6hmfnuhf",
-        dataset: "production",
-      },
-    },
-    "gatsby-plugin-gatsby-cloud",
-    "gatsby-plugin-image",
-    "gatsby-plugin-react-helmet",
-    "gatsby-plugin-sharp",
-    "gatsby-transformer-sharp",
-    {
-      resolve: "gatsby-source-filesystem",
-      options: {
-        name: "images",
-        path: "./src/images/",
-      },
-      __key: "images",
-    },
-  ],
+	siteMetadata: {
+		siteUrl: 'https://www.yourdomain.tld',
+		title: 'ww-gatsby-template',
+	},
+	plugins: [
+		{
+			resolve: 'gatsby-source-sanity',
+			options: {
+				projectId: '6hmfnuhf',
+				dataset: 'production',
+				token: process.env.MY_SANITY_TOKEN,
+				watchMode: true,
+				overlayDrafts: true,
+			},
+		},
+		`gatsby-plugin-material-ui`,
+		'gatsby-plugin-image',
+		`gatsby-plugin-gatsby-cloud`,
+		`gatsby-plugin-fontawesome-css`,
+		// {
+		//   resolve: "gatsby-plugin-google-analytics",
+		//   options: {
+		//     trackingId: "",
+		//   },
+		// },
+		'gatsby-plugin-react-helmet',
+		{
+			resolve: 'gatsby-plugin-manifest',
+			options: {
+				icon: 'src/images/icon.png',
+			},
+		},
+		'gatsby-plugin-sharp',
+		'gatsby-transformer-sharp',
+		{
+			resolve: 'gatsby-source-filesystem',
+			options: {
+				name: 'images',
+				path: './src/images/',
+			},
+			__key: 'images',
+		},
+	],
 };
